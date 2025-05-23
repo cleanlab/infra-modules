@@ -5,3 +5,7 @@ output "openai_endpoint_url" {
 output "openai_service_name" {
     value = var.openai_service_name
 }
+
+output "openai_service_resource_group_name" {
+    value = var.resource_group_name
+}
