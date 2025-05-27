@@ -1,0 +1,6 @@
+environment = "staging"
+location = "eastus"
+resource_group_name = "tlm-staging-rg"
+default_completion_model = "azure/gpt-4o-mini"
+default_embedding_model = "azure/text-embedding-3-small"
+app_version = "0.1.46"
