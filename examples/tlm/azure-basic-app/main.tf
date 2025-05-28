@@ -9,6 +9,11 @@ locals {
   }
 }
 
+import {
+  to = azurerm_resource_group.this
+  id = "/subscriptions/a47bf188-5236-4db5-bde5-16655f9d07ec/resourceGroups/tlm-staging-rg"
+}
+
 resource "azurerm_resource_group" "this" {
   name = local.resource_group_name
   location = local.location
