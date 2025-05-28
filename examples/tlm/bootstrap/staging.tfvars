@@ -1,5 +1,0 @@
-environment            = "staging"
-location               = "eastus"
-storage_account_name   = "tlmtestinfratfstate"
-container_name         = "tlm-infra"
-accessor_object_id     = "b0ae2faf-4ecc-44ad-bcd7-b9462845640e"

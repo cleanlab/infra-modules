@@ -1,14 +1,22 @@
 locals {
+  environment = "staging"
+  resource_group_name = "tlm-staging-rg"
+  location = "eastus"
   tags = {
-    environment = var.environment
+    environment = local.environment
     project = "tlm"
     terraform = "true"
   }
 }
 
+import {
+  to = azurerm_resource_group.this
+  id = "/subscriptions/a47bf188-5236-4db5-bde5-16655f9d07ec/resourceGroups/tlm-staging-rg"
+}
+
 resource "azurerm_resource_group" "this" {
-  name = var.resource_group_name
-  location = var.location
+  name = local.resource_group_name
+  location = local.location
   tags = local.tags
 }
 
@@ -36,9 +44,9 @@ provider "helm" {
 module "app" {
     source = "../../../tlm/app"
 
-    environment = var.environment
-    location = var.location
-    app_version = var.app_version
+    environment = local.environment
+    location = local.location
+    app_version = "0.1.46"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url
@@ -48,8 +56,8 @@ module "app" {
     image_pull_username = data.terraform_remote_state.infra.outputs.acr_image_pull_app_client_id
     image_pull_password = data.terraform_remote_state.infra.outputs.acr_image_pull_app_password
 
-    default_completion_model = var.default_completion_model
-    default_embedding_model = var.default_embedding_model
+    default_completion_model = "azure/gpt-4o-mini"
+    default_embedding_model = "azure/text-embedding-3-small"
 
     tags = local.tags
 }
