@@ -2,7 +2,7 @@
 
 Configuration in this directory creates the infrastructure resources needed for the TLM VPC deployment, in a remote Azure environment, by using the [infra](./../../../tlm/infra/) module.
 
-Note that values in [`main.tf`](./main.tf) should be modified or filled in as needed. The existing script will not work without changes.
+Note that values in [`main.tf`](./main.tf) and [`backend.tf`](./backend.tf) should be modified or filled in as needed. The existing script will not work without changes.
 
 ## Usage
 
