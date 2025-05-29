@@ -24,11 +24,6 @@ variable "storage_account_name" {
   description = "Name of the storage account for Terraform state"
 }
 
-variable "storage_account_id" {
-  type        = string
-  description = "ID of the storage account for Terraform state"
-}
-
 variable "container_name" {
   type        = string
   default     = "tlm-infra-tfstate"
@@ -38,4 +33,9 @@ variable "accessor_object_id" {
   type        = string
   description = "Optional Azure AD object ID to grant access to backend state"
   default     = null
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID associated with the resources"
 }

@@ -47,7 +47,7 @@ module "app" {
 
     environment = local.environment
     location = local.location
-    app_version = "0.1.46"
+    app_version = "0748029fa7614670da86a45422ec81bd36e6070b"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url
