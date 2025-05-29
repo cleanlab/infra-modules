@@ -14,17 +14,27 @@ module "infra" {
     entity = "your-company-name"
     location = "eastus"
 
-    create_openai_service = false
-    openai_service_name = "tlm-openai"
-    openai_service_resource_group_name = "tlm-staging-rg"
-    
-    create_imagepull_app_registration = false
-    existing_imagepull_app_registration = {
-        id = "/applications/c31c140c-1fbd-41c4-a088-428841cd560e"
-        client_id = "c2a065ca-b62a-4647-9622-40cf283de0d1"
-        tenant_id = "d3da5a95-4d1d-48aa-a0a6-87fe75942484"
-        password = ""
+    create_openai_service = true
+    openai_deployments = {
+        "gpt-4o-mini" = {
+            name = "gpt-4o-mini"
+            model = "gpt-4o-mini"
+            version = "2024-07-18"
+            format = "OpenAI"
+            scale = "GlobalStandard"
+            capacity = 10
+        }
+        "text-embedding-3-small" = {
+            name = "text-embedding-3-small"
+            model = "text-embedding-3-small"
+            version = "1"
+            format = "OpenAI"
+            scale = "Standard"
+            capacity = 50
+        }
     }
+    
+    create_imagepull_app_registration = true
 
     default_completion_model = "azure/gpt-4o-mini"
     default_embedding_model = "azure/text-embedding-3-small"
