@@ -21,6 +21,11 @@ resource "azurerm_resource_group" "this" {
   tags = local.tags
 }
 
+provider "azurerm" {
+  features {}
+  subscription_id = local.subscription_id
+}
+
 provider "kubernetes" {
   host                   = data.terraform_remote_state.infra.outputs.kube_host
   client_certificate     = base64decode(data.terraform_remote_state.infra.outputs.kube_client_certificate)

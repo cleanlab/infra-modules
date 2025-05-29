@@ -8,5 +8,9 @@ terraform {
       source  = "hashicorp/helm"
       version = ">= 2.4.1"
     }
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "~> 4.22.0"
+    }
   }
 }
