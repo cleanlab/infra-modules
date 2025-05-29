@@ -1,6 +1,7 @@
 locals {
   environment = "staging"
   resource_group_name = "tlm-staging-rg"
+  subscription_id = "a47bf188-5236-4db5-bde5-16655f9d07ec"
   location = "eastus"
   tags = {
     environment = local.environment
@@ -11,18 +12,13 @@ locals {
 
 import {
   to = azurerm_resource_group.this
-  id = "/subscriptions/a47bf188-5236-4db5-bde5-16655f9d07ec/resourceGroups/tlm-staging-rg"
+  id = "/subscriptions/${local.subscription_id}/resourceGroups/${local.resource_group_name}"
 }
 
 resource "azurerm_resource_group" "this" {
   name = local.resource_group_name
   location = local.location
   tags = local.tags
-}
-
-provider "azurerm" {
-  features {}
-  subscription_id = "a47bf188-5236-4db5-bde5-16655f9d07ec"
 }
 
 provider "kubernetes" {

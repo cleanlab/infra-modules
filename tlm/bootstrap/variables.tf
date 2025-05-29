@@ -39,17 +39,3 @@ variable "accessor_object_id" {
   description = "Optional Azure AD object ID to grant access to backend state"
   default     = null
 }
-
-/*
-  Note that your Azure AD should already have the following role assignments:
-
-  az role assignment create \
-    --assignee <OBJECT_ID> \
-    --role "Contributor" \
-    --scope /subscriptions/<SUBSCRIPTION_ID>
-
-  az role assignment create \
-    --assignee <OBJECT_ID> \
-    --role "User Access Administrator" \
-    --scope /subscriptions/<SUBSCRIPTION_ID>
-*/
