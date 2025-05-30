@@ -25,6 +25,11 @@ resource helm_release "this" {
     }
 
     set {
+        name = "chat_backend.image.tag"
+        value = coalesce(var.app_image_tag, var.app_version)
+    }
+
+    set {
         name = "chat_backend.service_account"
         value = kubernetes_service_account.openai_identity_sa.metadata[0].name
     }
