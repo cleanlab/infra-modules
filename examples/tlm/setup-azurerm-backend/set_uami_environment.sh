@@ -1,5 +1,0 @@
-export ARM_USE_MSI=true
-export ARM_CLIENT_ID=77011902-c740-4a5d-bef0-6f4a58d8ea60
-export ARM_TENANT_ID=d3da5a95-4d1d-48aa-a0a6-87fe75942484
-export ARM_SUBSCRIPTION_ID=a47bf188-5236-4db5-bde5-16655f9d07ec
-
