@@ -23,6 +23,12 @@ variable "app_version" {
     description = "The version of the TLM to deploy"
 }
 
+variable "app_image_tag" {
+    type = string
+    description = "The image tag of the TLM chat backend service to deploy. If null, app_version is used as a fallback."
+    default = null
+}
+
 variable "cluster_oidc_issuer_url" {
     type = string
     description = "The OIDC issuer URL of the cluster"

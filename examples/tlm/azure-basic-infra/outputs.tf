@@ -28,6 +28,7 @@ output "acr_image_pull_app_client_id" {
 
 output "acr_image_pull_app_password" {
     value = module.infra.acr_image_pull_app_password
+    sensitive = true
 }
 
 output "openai_service_name" {

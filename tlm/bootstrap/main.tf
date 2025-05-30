@@ -12,18 +12,24 @@ resource "azurerm_storage_account" "tf" {
   account_tier                    = "Standard"
   account_replication_type        = "LRS"
   allow_nested_items_to_be_public = false
+
+  depends_on = [azurerm_resource_group.this]
 }
 
 resource "azurerm_storage_container" "tf" {
   name                  = var.container_name
-  storage_account_id    = var.storage_account_id
+  storage_account_id    = "/subscriptions/${var.subscription_id}/resourceGroups/${var.resource_group_name}/providers/Microsoft.Storage/storageAccounts/${var.storage_account_name}"
   container_access_type = "private"
+
+  depends_on = [azurerm_resource_group.this, azurerm_storage_account.tf]
 }
 
 resource "azurerm_user_assigned_identity" "tf_identity" {
   name                = "terraform-uami"
   location            = var.location
   resource_group_name = var.resource_group_name
+
+  depends_on = [azurerm_resource_group.this]
 }
 
 resource "azurerm_role_assignment" "tfstate_access" {
