@@ -8,7 +8,7 @@ locals {
 }
 
 module "infra" {
-    source = "../../../tlm/infra"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/infra?ref=v1.0.0"
 
     environment = local.environment
     entity = "your-company-name"
