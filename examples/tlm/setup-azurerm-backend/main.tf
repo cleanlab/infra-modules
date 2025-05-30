@@ -15,7 +15,7 @@ locals {
 }
 
 module "bootstrap" {
-    source               = "../../../tlm/bootstrap"
+    source               = "git::https://github.com/cleanlab/infra-modules.git//tlm/bootstrap?ref=v1.0.0"
     resource_group_name  = local.resource_group_name
     location             = "eastus"
     environment          = local.environment
