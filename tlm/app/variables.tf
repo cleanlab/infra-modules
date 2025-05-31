@@ -50,6 +50,12 @@ variable "registry_server" {
     default = "tlmcleanlab.azurecr.io"
 }
 
+variable "registry_name" {
+    type = string
+    description = "The name of the container registry to pull images from for the TLM backend service"
+    default = "tlm/chat-backend"
+}
+
 variable "image_pull_username" {
     type = string
     description = "The username to pull images from the registry"

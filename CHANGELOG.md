@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2025-05-30
+
+- Add input to `app` module for ACR repository name.
+
 ## [1.0.0] - 2025-05-30
 
 - Initial release of the `infra-modules` repository.
 
-[Unreleased]: https://github.com/cleanlab/infra-modules/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/cleanlab/infra-modules/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/cleanlab/infra-modules/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/cleanlab/infra-modules/compare/025cdabbd3cb3358cbec16595508ec3dc66b42f7...v1.0.0

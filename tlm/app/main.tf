@@ -21,7 +21,7 @@ resource helm_release "this" {
 
     set {
         name = "chat_backend.image.repository"
-        value = "tlmcleanlab.azurecr.io/tlm/chat-backend"
+        value = "${var.registry_server}/${var.registry_name}"
     }
 
     set {
