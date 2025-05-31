@@ -43,7 +43,7 @@ provider "helm" {
 }
 
 module "app" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.0"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.1"
 
     environment = local.environment
     location = local.location
