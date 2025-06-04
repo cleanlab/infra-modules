@@ -43,11 +43,11 @@ provider "helm" {
 }
 
 module "app" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.1"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.2"
 
     environment = local.environment
     location = local.location
-    app_version = "0.1.48"
+    app_version = "0.1.49"
     app_image_tag = "4062b54d73190dee0ceb90eec78c5c7f0278e5cc"
     resource_group_name = azurerm_resource_group.this.name
 
