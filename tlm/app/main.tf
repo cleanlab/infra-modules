@@ -2,8 +2,7 @@ resource helm_release "this" {
     name = local.release_name
     namespace = local.namespace
     chart = "tlm"
-    repository = "oci://tlmcleanlab.azurecr.io/tlm"
-
+    repository = "https://cleanlab.github.io/helm-charts/"
     version = var.app_version
 
     repository_username = var.image_pull_username
