@@ -43,12 +43,12 @@ provider "helm" {
 }
 
 module "app" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.2"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.3"
 
     environment = local.environment
     location = local.location
     app_version = "0.1.49"
-    app_image_tag = "4062b54d73190dee0ceb90eec78c5c7f0278e5cc"
+    app_image_tag = "50b4606be8a9e127b3e9610c7211f03dba2766ab"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url

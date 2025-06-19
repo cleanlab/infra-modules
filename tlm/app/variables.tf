@@ -76,3 +76,9 @@ variable "default_embedding_model" {
     type = string
     description = "The default embedding model to use"
 }
+
+variable "enable_external_access" {
+    type = bool
+    description = "Whether to enable external access to the chat backend service"
+    default = false
+}

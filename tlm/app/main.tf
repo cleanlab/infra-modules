@@ -47,4 +47,12 @@ resource helm_release "this" {
         name = "chat_backend.defaults.TLM_DEFAULT_EMBEDDING_MODEL"
         value = var.default_embedding_model
     }
+
+    dynamic "set" {
+        for_each = var.enable_external_access ? [1] : []
+        content {
+            name = "chat_backend.service.type"
+            value = "LoadBalancer"
+        }
+    }
 }
