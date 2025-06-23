@@ -43,12 +43,12 @@ provider "helm" {
 }
 
 module "app" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.3"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app"
 
     environment = local.environment
     location = local.location
     app_version = "0.1.49"
-    app_image_tag = "50b4606be8a9e127b3e9610c7211f03dba2766ab"
+    app_image_tag = "560bf9e410f40fe22fea18f4c15a29b8b0bb1d20"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url
@@ -60,6 +60,8 @@ module "app" {
 
     default_completion_model = "azure/gpt-4o-mini"
     default_embedding_model = "azure/text-embedding-3-small"
+
+    enable_external_access = true
 
     tags = local.tags
 }

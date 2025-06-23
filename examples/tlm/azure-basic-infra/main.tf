@@ -24,6 +24,30 @@ module "infra" {
             scale = "GlobalStandard"
             capacity = 10
         }
+        "gpt-4o" = {
+            name = "gpt-4o"
+            model = "gpt-4o"
+            version = "2024-11-20"
+            format = "OpenAI"
+            scale = "GlobalStandard"
+            capacity = 10
+        }
+        "gpt-4.1-mini" = {
+            name = "gpt-4.1-mini"
+            model = "gpt-4.1-mini"
+            version = "2025-04-14"
+            format = "OpenAI"
+            scale = "GlobalStandard"
+            capacity = 20
+        }
+        "gpt-4.1-nano" = {
+            name = "gpt-4.1-nano"
+            model = "gpt-4.1-nano"
+            version = "2025-04-14"
+            format = "OpenAI"
+            scale = "GlobalStandard"
+            capacity = 10
+        }
         "text-embedding-3-small" = {
             name = "text-embedding-3-small"
             model = "text-embedding-3-small"
