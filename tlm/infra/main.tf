@@ -28,6 +28,8 @@ module "openai_service" {
     cognitive_deployments = var.openai_deployments
 
     tags = var.tags
+
+    depends_on = [azurerm_resource_group.this]
 }
 
 module "cluster" {
@@ -38,6 +40,8 @@ module "cluster" {
     resource_group_name = azurerm_resource_group.this.name
 
     tags = var.tags
+
+    depends_on = [azurerm_resource_group.this]
 }
 
 provider "kubernetes" {

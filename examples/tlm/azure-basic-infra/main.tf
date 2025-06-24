@@ -8,11 +8,12 @@ locals {
 }
 
 module "infra" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/infra?ref=v1.0.1"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/infra"
+    # source = "../../../tlm/infra"
 
     environment = local.environment
     entity = "your-company-name"
-    location = "eastus"
+    location = "eastus2"
 
     create_openai_service = true
     openai_deployments = {
@@ -59,9 +60,6 @@ module "infra" {
     }
     
     create_imagepull_app_registration = true
-
-    default_completion_model = "azure/gpt-4o-mini"
-    default_embedding_model = "azure/text-embedding-3-small"
 
     tags = {
         environment = local.environment
