@@ -2,7 +2,7 @@ locals {
   environment = "staging"
   resource_group_name = "tlm-staging-rg"
   subscription_id = "a47bf188-5236-4db5-bde5-16655f9d07ec"
-  location = "eastus"
+  location = "eastus2"
   tags = {
     environment = local.environment
     project = "tlm"
@@ -43,12 +43,12 @@ provider "helm" {
 }
 
 module "app" {
-    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app?ref=v1.0.3"
+    source = "git::https://github.com/cleanlab/infra-modules.git//tlm/app"
 
     environment = local.environment
     location = local.location
     app_version = "0.1.49"
-    app_image_tag = "50b4606be8a9e127b3e9610c7211f03dba2766ab"
+    app_image_tag = "2ec1e85764614516e4031f63f8224d4f2be18927"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url
@@ -58,8 +58,10 @@ module "app" {
     image_pull_username = data.terraform_remote_state.infra.outputs.acr_image_pull_app_client_id
     image_pull_password = data.terraform_remote_state.infra.outputs.acr_image_pull_app_password
 
-    default_completion_model = "azure/gpt-4o-mini"
+    default_completion_model = "azure/gpt-4.1-mini"
     default_embedding_model = "azure/text-embedding-3-small"
+
+    enable_external_access = true
 
     tags = local.tags
 }

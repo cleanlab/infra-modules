@@ -1,7 +1,7 @@
 module "openai_service" {
   count = var.create ? 1 : 0
   source  = "Azure/avm-res-cognitiveservices-account/azurerm"
-  version = "0.6.0"
+  version = "0.7.0"
 
   kind = "OpenAI"
   location = var.location

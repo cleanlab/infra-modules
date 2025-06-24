@@ -49,16 +49,6 @@ variable "openai_deployments" {
     default = {}
 }
 
-variable "default_completion_model" {
-    type = string
-    description = "The default completion model to use. Must be deployed in the OpenAI service (and prefixed with 'azure/')"
-}
-
-variable "default_embedding_model" {
-    type = string
-    description = "The default embedding model to use. Must be deployed in the OpenAI service (and prefixed with 'azure/')"
-}
-
 variable "create_imagepull_app_registration" {
     type = bool
     description = "Whether to create the app registration for pulling TLM container images"
