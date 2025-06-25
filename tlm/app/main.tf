@@ -1,5 +1,5 @@
 locals {
-    models_json = jsondecode(file("${path.module}/models.json))
+    models_json = jsondecode(file(var.model_config_file_path))
 }
 
 resource helm_release "this" {

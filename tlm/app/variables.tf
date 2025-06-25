@@ -86,5 +86,5 @@ variable "enable_external_access" {
 variable "model_config_file_path" {
   description = "Path to the JSON model providers configuration file"
   type        = string
-  default     = "${path.module}/models.json"
+  default     = ""
 }
