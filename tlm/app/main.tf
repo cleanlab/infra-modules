@@ -2,10 +2,6 @@ locals {
     models_json = jsondecode(file(var.model_config_file_path))
 }
 
-locals {
-    models_json = jsondecode(file(var.model_config_file_path))
-}
-
 resource helm_release "this" {
     name = local.release_name
     namespace = local.namespace
@@ -64,11 +60,6 @@ resource helm_release "this" {
     set {
         name = "chat_backend.defaults.LOWEST_LATENCY_MODEL"
         value = var.lowest_latency_model
-    }
-
-    set {
-        name = "chat_backend.models"
-        value = yamlencode(local.models_json)
     }
 
     dynamic "set" {
