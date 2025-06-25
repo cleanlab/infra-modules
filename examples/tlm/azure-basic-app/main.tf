@@ -60,6 +60,7 @@ module "app" {
 
     default_completion_model = "azure/gpt-4.1-mini"
     default_embedding_model = "azure/text-embedding-3-small"
+    lowest_latency_model = "azure/gpt-4.1-nano"
 
     enable_external_access = true
     model_config_file_path = "/Users/Kelsey/code/infra-modules/examples/tlm/azure-basic-app/models.json"

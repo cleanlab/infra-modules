@@ -53,6 +53,11 @@ resource helm_release "this" {
     }
 
     set {
+        name = "chat_backend.defaults.LOWEST_LATENCY_MODEL"
+        value = var.lowest_latency_model
+    }
+
+    set {
         name = "chat_backend.models"
         value = yamlencode(local.models_json)
     }
