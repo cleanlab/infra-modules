@@ -82,3 +82,9 @@ variable "enable_external_access" {
     description = "Whether to enable external access to the chat backend service"
     default = false
 }
+
+variable "model_config_file_path" {
+  description = "Path to the JSON model providers configuration file"
+  type        = string
+  default     = ""
+}

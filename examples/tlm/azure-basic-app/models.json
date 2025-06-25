@@ -1,0 +1,22 @@
+{
+    "gpt-4o": {
+        "api_base": "https://azure-cognitive-fegxs.openai.azure.com/",
+        "api_version": "2024-11-20"
+    },
+    "gpt-4o-mini": {
+        "api_base": "https://azure-cognitive-fegxs.openai.azure.com/",
+        "api_version": "2024-07-18"
+    },
+    "gpt-4.1-mini": {
+        "api_base": "https://azure-cognitive-fegxs.openai.azure.com/",
+        "api_version": "2025-04-14"
+    },
+    "gpt-4.1-nano": {
+        "api_base": "https://azure-cognitive-fegxs.openai.azure.com/",
+        "api_version": "2025-04-14"
+    },
+    "text-embedding-3-small": {
+        "api_base": "https://azure-cognitive-fegxs.openai.azure.com/",
+        "api_version": "1"
+    }
+}

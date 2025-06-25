@@ -48,7 +48,7 @@ module "app" {
     environment = local.environment
     location = local.location
     app_version = "0.1.49"
-    app_image_tag = "2ec1e85764614516e4031f63f8224d4f2be18927"
+    app_image_tag = "dabd65c962fd9927d24d48eef94aab79e54bf91e"
     resource_group_name = azurerm_resource_group.this.name
 
     cluster_oidc_issuer_url = data.terraform_remote_state.infra.outputs.cluster_oidc_issuer_url
@@ -62,6 +62,7 @@ module "app" {
     default_embedding_model = "azure/text-embedding-3-small"
 
     enable_external_access = true
+    model_config_file_path = "/Users/Kelsey/code/infra-modules/examples/tlm/azure-basic-app/models.json"
 
     tags = local.tags
 }
