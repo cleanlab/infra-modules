@@ -77,6 +77,11 @@ variable "default_embedding_model" {
     description = "The default embedding model to use"
 }
 
+variable "lowest_latency_model" {
+    type = string
+    description = "The lowest latency model available"
+}
+
 variable "enable_external_access" {
     type = bool
     description = "Whether to enable external access to the chat backend service"

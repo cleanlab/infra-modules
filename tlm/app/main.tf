@@ -57,6 +57,11 @@ resource helm_release "this" {
         value = yamlencode(local.models_json)
     }
 
+    set {
+        name = "chat_backend.defaults.LOWEST_LATENCY_MODEL"
+        value = var.lowest_latency_model
+    }
+
     dynamic "set" {
         for_each = var.enable_external_access ? [1] : []
         content {
