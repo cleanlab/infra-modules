@@ -23,7 +23,7 @@ module "infra" {
             version = "2024-07-18"
             format = "OpenAI"
             scale = "GlobalStandard"
-            capacity = 10
+            capacity = 200
         }
         "gpt-4o" = {
             name = "gpt-4o"
@@ -31,7 +31,7 @@ module "infra" {
             version = "2024-11-20"
             format = "OpenAI"
             scale = "GlobalStandard"
-            capacity = 10
+            capacity = 50
         }
         "gpt-4.1-mini" = {
             name = "gpt-4.1-mini"
@@ -39,7 +39,7 @@ module "infra" {
             version = "2025-04-14"
             format = "OpenAI"
             scale = "GlobalStandard"
-            capacity = 20
+            capacity = 200
         }
         "gpt-4.1-nano" = {
             name = "gpt-4.1-nano"
@@ -47,7 +47,7 @@ module "infra" {
             version = "2025-04-14"
             format = "OpenAI"
             scale = "GlobalStandard"
-            capacity = 10
+            capacity = 200
         }
         "text-embedding-3-small" = {
             name = "text-embedding-3-small"
