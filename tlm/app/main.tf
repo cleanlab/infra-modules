@@ -48,11 +48,6 @@ resource helm_release "this" {
     }
 
     set {
-        name = "chat_backend.defaults.TLM_DEFAULT_EMBEDDING_MODEL"
-        value = var.default_embedding_model
-    }
-
-    set {
         name = "chat_backend.models"
         value = yamlencode(local.models_json)
     }

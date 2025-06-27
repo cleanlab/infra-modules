@@ -59,7 +59,6 @@ module "app" {
     image_pull_password = data.terraform_remote_state.infra.outputs.acr_image_pull_app_password
 
     default_completion_model = "azure/gpt-4.1-mini"
-    default_embedding_model = "azure/text-embedding-3-small"
     lowest_latency_model = "azure/gpt-4.1-nano"
 
     enable_external_access = true

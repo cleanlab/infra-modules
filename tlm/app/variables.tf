@@ -72,11 +72,6 @@ variable "default_completion_model" {
     description = "The default completion model to use"
 }
 
-variable "default_embedding_model" {
-    type = string
-    description = "The default embedding model to use"
-}
-
 variable "lowest_latency_model" {
     type = string
     description = "The lowest latency model available"
