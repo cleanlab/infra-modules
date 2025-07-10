@@ -49,14 +49,6 @@ module "infra" {
             scale = "GlobalStandard"
             capacity = 200
         }
-        "text-embedding-3-small" = {
-            name = "text-embedding-3-small"
-            model = "text-embedding-3-small"
-            version = "1"
-            format = "OpenAI"
-            scale = "Standard"
-            capacity = 50
-        }
     }
     
     create_imagepull_app_registration = true
