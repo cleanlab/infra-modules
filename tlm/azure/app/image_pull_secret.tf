@@ -1,7 +1,7 @@
 resource "kubernetes_secret" "image_pull_secret" {
   metadata {
     name = local.image_pull_secret_name
-    namespace = local.namespace
+    namespace = var.namespace
   }
 
   type = "kubernetes.io/dockerconfigjson"
