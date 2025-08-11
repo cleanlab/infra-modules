@@ -4,6 +4,12 @@ variable "release_name" {
     default = "tlm"
 }
 
+variable "aws_region" {
+    description = "The AWS region for Bedrock endpoints"
+    type        = string
+    default     = "us-west-2"
+}
+
 variable "namespace" {
     description = "Namespace in which to deploy the TLM app"
     type = string
@@ -13,6 +19,7 @@ variable "namespace" {
 variable "app_version" {
     type = string
     description = "The version of the TLM to deploy"
+    default = "0.1.52"
 }
 
 variable "app_image_tag" {
@@ -24,7 +31,7 @@ variable "app_image_tag" {
 variable "registry_server" {
     type = string
     description = "The registry server to pull images from"
-    default = "tlmcleanlab.azurecr.io"
+    default = "043170249292.dkr.ecr.us-west-2.amazonaws.com"
 }
 
 variable "registry_name" {
@@ -33,25 +40,16 @@ variable "registry_name" {
     default = "tlm/chat-backend"
 }
 
-variable "image_pull_username" {
-    type = string
-    description = "The username to pull images from the registry"
-}
-
-variable "image_pull_password" {
-    type = string
-    description = "The password to pull images from the registry"
-    sensitive = true
-}
-
 variable "default_completion_model" {
     type = string
     description = "The default completion model to use"
+    default = "openai.gpt-4o-mini"
 }
 
 variable "lowest_latency_model" {
     type = string
     description = "The lowest latency model available"
+    default = "anthropic.claude-3-haiku-20240307-v1:0"
 }
 
 variable "enable_external_access" {
@@ -60,8 +58,14 @@ variable "enable_external_access" {
     default = false
 }
 
+variable "bedrock_endpoint" {
+  description = "The Bedrock service endpoint URL"
+  type        = string
+  default     = "https://bedrock-runtime.us-west-2.amazonaws.com"
+}
+
 variable "model_config_file_path" {
   description = "Path to the JSON model providers configuration file"
   type        = string
-  default     = ""
+  default     = null
 }

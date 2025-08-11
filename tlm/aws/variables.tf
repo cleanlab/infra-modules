@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "The AWS region to deploy resources to"
+  type        = string
+  default     = "us-east-2"
+}
+
 variable "environment" {
   description = "The environment to deploy to"
   type        = string
@@ -8,7 +14,13 @@ variable "vpc_id" {
   type        = string
 }
 
-variable "subnet_ids" {
-  description = "The IDs of the subnets to deploy the cluster to"
+variable "private_subnet_ids" {
+  description = "The IDs of the private subnets to deploy the cluster to"
   type        = list(string)
+}
+
+variable "app_image_tag" {
+  description = "Name of the chat backend container image tag to run"
+  type = string
+  default = "0.1.2"
 }

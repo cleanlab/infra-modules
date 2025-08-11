@@ -1,5 +1,18 @@
 locals {
-    models_json = jsondecode(file(var.model_config_file_path))
+    # Default Bedrock models configuration
+    default_models = {
+        "gpt-4o-mini" = {
+            api_base = "https://bedrock-runtime.${var.aws_region}.amazonaws.com"
+            api_version = "2024-07-18"
+        }
+        "gpt-4o-nano" = {
+            api_base = "https://bedrock-runtime.${var.aws_region}.amazonaws.com"
+            api_version = "2024-07-18"
+        }
+    }
+    
+    # Use custom models if provided, otherwise use defaults
+    models_json = var.model_config_file_path != null ? jsondecode(file(var.model_config_file_path)) : local.default_models
 }
 
 resource helm_release "this" {
@@ -9,17 +22,13 @@ resource helm_release "this" {
     repository = "https://cleanlab.github.io/helm-charts/"
     version = var.app_version
 
-    repository_username = var.image_pull_username
-    repository_password = var.image_pull_password
+    depends_on = [kubernetes_namespace.this]
 
+    # in AWS, use EKS node group default permissions to pull images from ECR repo in same account
+    # TODO: optionally create IRSA if cross-account
     set {
         name = "imagePullSecret.enabled"
-        value = true
-    }
-
-    set {
-        name = "imagePullSecret.name"
-        value = local.image_pull_secret_name
+        value = false
     }
 
     set {
@@ -34,7 +43,7 @@ resource helm_release "this" {
 
     set {
         name = "chat_backend.defaults.TLM_DEFAULT_MODEL_API_BASE"
-        value = data.azurerm_cognitive_account.openai_service.endpoint
+        value = "https://bedrock-runtime.us-east-2.amazonaws.com"
     }
 
     set {
@@ -52,11 +61,8 @@ resource helm_release "this" {
         value = var.lowest_latency_model
     }
 
-    dynamic "set" {
-        for_each = var.enable_external_access ? [1] : []
-        content {
-            name = "chat_backend.service.type"
-            value = "LoadBalancer"
-        }
+    set {
+        name = "chat_backend.service.type"
+        value = var.enable_external_access ? "LoadBalancer" : "ClusterIP"
     }
 }

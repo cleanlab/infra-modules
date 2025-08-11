@@ -6,7 +6,7 @@ module "eks" {
     cluster_version = "1.31"
 
     cluster_endpoint_public_access = true
-    enable_cluster_creator_admin_permissions = false
+    enable_cluster_creator_admin_permissions = true
 
     cluster_addons = {
         coredns = {}
@@ -77,4 +77,22 @@ module "ebs_csi_irsa" {
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.eks.cluster_name
+}
+
+resource "kubernetes_cluster_role_binding" "terraform_admin" {
+  metadata {
+    name = "terraform-admin"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "cluster-admin"
+  }
+  subject {
+    kind      = "User"
+    name      = "arn:aws:iam::043170249292:user/kelsey.wong"
+    api_group = "rbac.authorization.k8s.io"
+  }
+  
+  depends_on = [module.eks]
 }
