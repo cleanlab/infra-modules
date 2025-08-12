@@ -1,13 +1,10 @@
 locals {
     # Default Bedrock models configuration
     default_models = {
-        "gpt-4o-mini" = {
-            api_base = "https://bedrock-runtime.${var.aws_region}.amazonaws.com"
-            api_version = "2024-07-18"
-        }
-        "gpt-4o-nano" = {
-            api_base = "https://bedrock-runtime.${var.aws_region}.amazonaws.com"
-            api_version = "2024-07-18"
+        "bedrock/us.anthropic.claude-3-haiku-20240307-v1:0" = {
+            api_base = "https://bedrock-runtime.us-west-2.amazonaws.com"
+            api_version = "2023-09-30"
+            inference_profile_arn = "arn:aws:bedrock:us-west-2:043170249292:inference-profile/us.anthropic.claude-3-haiku-20240307-v1:0"
         }
     }
     
@@ -22,10 +19,21 @@ resource helm_release "this" {
     repository = "https://cleanlab.github.io/helm-charts/"
     version = var.app_version
 
-    depends_on = [kubernetes_namespace.this]
+    depends_on = [kubernetes_namespace.this, kubernetes_service_account.chat_backend]
+
+    # Configure service account with IRSA (uses existing Helm chart functionality)
+    set {
+        name = "chat_backend.service_account"
+        value = kubernetes_service_account.chat_backend.metadata[0].name
+    }
+
+    # Add AWS environment variables through existing defaults mechanism
+    set {
+        name = "chat_backend.defaults.AWS_DEFAULT_REGION"
+        value = var.aws_region
+    }
 
     # in AWS, use EKS node group default permissions to pull images from ECR repo in same account
-    # TODO: optionally create IRSA if cross-account
     set {
         name = "imagePullSecret.enabled"
         value = false

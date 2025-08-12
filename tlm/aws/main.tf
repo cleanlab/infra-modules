@@ -42,6 +42,10 @@ module "app" {
     app_image_tag = var.app_image_tag
     enable_external_access = true
     aws_region = var.aws_region
+    
+    # Pass OIDC information for IRSA
+    cluster_oidc_provider_arn = module.cluster.cluster_oidc_arn
+    cluster_oidc_issuer_url = module.cluster.cluster_oidc_url
 
     depends_on = [module.cluster]
 

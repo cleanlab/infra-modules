@@ -49,7 +49,7 @@ variable "default_completion_model" {
 variable "lowest_latency_model" {
     type = string
     description = "The lowest latency model available"
-    default = "anthropic.claude-3-haiku-20240307-v1:0"
+    default = "anthropic.claude-3-haiku-20240307-v1:0:0"
 }
 
 variable "enable_external_access" {
@@ -68,4 +68,20 @@ variable "model_config_file_path" {
   description = "Path to the JSON model providers configuration file"
   type        = string
   default     = null
+}
+
+variable "cluster_oidc_provider_arn" {
+  description = "The OIDC provider ARN from the EKS cluster"
+  type        = string
+}
+
+variable "cluster_oidc_issuer_url" {
+  description = "The OIDC issuer URL from the EKS cluster"
+  type        = string
+}
+
+variable "service_account_name" {
+  description = "Name of the Kubernetes service account"
+  type        = string
+  default     = "tlm-chat-backend"
 }
