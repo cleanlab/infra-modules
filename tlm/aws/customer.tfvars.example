@@ -1,0 +1,9 @@
+environment = "customer-acme"
+vpc_id = "vpc-abc123"
+private_subnet_ids = [
+  "subnet-123",
+  "subnet-456",
+  "subnet-789",
+]
+app_image_tag = "beb065f93474d74fd58e7cb27b4d6d6bdb21297e"
+openai_api_key_secret_name = "upstart/tlm/chat-backend"
