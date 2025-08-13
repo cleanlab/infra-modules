@@ -42,6 +42,7 @@ module "app" {
     app_image_tag = var.app_image_tag
     enable_external_access = true
     aws_region = var.aws_region
+    openai_api_key_secret_name = var.openai_api_key_secret_name
     
     # Pass OIDC information for IRSA
     cluster_oidc_provider_arn = module.cluster.cluster_oidc_arn
@@ -50,6 +51,7 @@ module "app" {
     depends_on = [module.cluster]
 
     providers = {
+        aws = aws
         helm = helm.eks
         kubernetes = kubernetes.eks
     }

@@ -24,3 +24,8 @@ variable "app_image_tag" {
   type = string
   default = "0.1.2"
 }
+
+variable "openai_api_key_secret_name" {
+  description = "Name of the secret in AWS secrets manager to read OpenAI API key from"
+  type = string
+}

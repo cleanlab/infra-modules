@@ -22,3 +22,13 @@ output "iam_role_name" {
   description = "Name of the IAM role for the service account"
   value = aws_iam_role.chat_backend_role.name
 }
+
+output "openai_api_key_secret_arn" {
+  description = "ARN of the OpenAI API key secret in AWS Secrets Manager"
+  value = data.aws_secretsmanager_secret.openai_api_key.arn
+}
+
+output "openai_api_key_secret_name" {
+  description = "Name of the OpenAI API key secret in AWS Secrets Manager"
+  value = data.aws_secretsmanager_secret.openai_api_key.name
+}

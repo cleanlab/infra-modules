@@ -2,14 +2,28 @@ locals {
     # Default Bedrock models configuration
     default_models = {
         "bedrock/us.anthropic.claude-3-haiku-20240307-v1:0" = {
-            api_base = "https://bedrock-runtime.us-west-2.amazonaws.com"
+            api_base = "https://bedrock-runtime.${var.aws_region}.amazonaws.com"
             api_version = "2023-09-30"
-            inference_profile_arn = "arn:aws:bedrock:us-west-2:043170249292:inference-profile/us.anthropic.claude-3-haiku-20240307-v1:0"
         }
     }
     
     # Use custom models if provided, otherwise use defaults
     models_json = var.model_config_file_path != null ? jsondecode(file(var.model_config_file_path)) : local.default_models
+}
+
+data "aws_secretsmanager_secret" "openai_api_key" {
+  name = var.openai_api_key_secret_name
+  provider = aws
+}
+
+data "aws_secretsmanager_secret_version" "openai_api_key" {
+  secret_id = data.aws_secretsmanager_secret.openai_api_key.id
+  provider = aws
+}
+
+locals {
+  secret_json = jsondecode(data.aws_secretsmanager_secret_version.openai_api_key.secret_string)
+  openai_api_key = local.secret_json["OPENAI_API_KEY"]
 }
 
 resource helm_release "this" {
@@ -27,10 +41,14 @@ resource helm_release "this" {
         value = kubernetes_service_account.chat_backend.metadata[0].name
     }
 
-    # Add AWS environment variables through existing defaults mechanism
     set {
-        name = "chat_backend.defaults.AWS_DEFAULT_REGION"
+        name = "chat_backend.aws_region"
         value = var.aws_region
+    }
+
+    set_sensitive {
+        name = "chat_backend.defaults.OPENAI_API_KEY"
+        value = local.openai_api_key
     }
 
     # in AWS, use EKS node group default permissions to pull images from ECR repo in same account
@@ -49,9 +67,11 @@ resource helm_release "this" {
         value = coalesce(var.app_image_tag, var.app_version)
     }
 
+    # deliberately exclude TLM_DEFAULT_MODEL_API_BASE and set defaults at the provider level instead
+
     set {
-        name = "chat_backend.defaults.TLM_DEFAULT_MODEL_API_BASE"
-        value = "https://bedrock-runtime.us-east-2.amazonaws.com"
+        name = "chat_backend.defaults.TLM_DEFAULT_MODEL_API_BASE_BEDROCK"
+        value = var.bedrock_endpoint
     }
 
     set {

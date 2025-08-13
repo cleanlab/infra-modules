@@ -10,12 +10,26 @@ data "aws_iam_policy_document" "bedrock_policy" {
     actions = [
       "bedrock:InvokeModel",
       "bedrock:InvokeModelWithResponseStream",
-      "bedrock:InvokeModelWithInferenceProfile",
       "bedrock:ListFoundationModels",
       "bedrock:GetFoundationModel"
     ]
     
     resources = ["*"]
+  }
+
+  # Add access to all inference profiles across all regions
+  statement {
+    sid    = "InferenceProfileAccess"
+    effect = "Allow"
+
+    actions = [
+      "bedrock:InvokeModel",
+      "bedrock:InvokeModelWithResponseStream"
+    ]
+
+    resources = [
+      "arn:aws:bedrock:*:043170249292:inference-profile/*"
+    ]
   }
 }
 

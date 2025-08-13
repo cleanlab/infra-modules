@@ -7,7 +7,6 @@ variable "release_name" {
 variable "aws_region" {
     description = "The AWS region for Bedrock endpoints"
     type        = string
-    default     = "us-west-2"
 }
 
 variable "namespace" {
@@ -43,13 +42,13 @@ variable "registry_name" {
 variable "default_completion_model" {
     type = string
     description = "The default completion model to use"
-    default = "openai.gpt-4o-mini"
+    default = "gpt-4.1-mini"
 }
 
 variable "lowest_latency_model" {
     type = string
     description = "The lowest latency model available"
-    default = "anthropic.claude-3-haiku-20240307-v1:0:0"
+    default = "gpt-4.1-nano"
 }
 
 variable "enable_external_access" {
@@ -84,4 +83,9 @@ variable "service_account_name" {
   description = "Name of the Kubernetes service account"
   type        = string
   default     = "tlm-chat-backend"
+}
+
+variable "openai_api_key_secret_name" {
+  description = "Name of the AWS Secrets Manager secret containing the OpenAI API key"
+  type        = string
 }
