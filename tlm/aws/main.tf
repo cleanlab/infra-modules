@@ -40,7 +40,7 @@ module "app" {
     source = "./app"
     app_version = "0.1.52"
     app_image_tag = var.app_image_tag
-    enable_external_access = true
+    enable_external_access = var.enable_external_access
     aws_region = var.aws_region
     openai_api_key_secret_name = var.openai_api_key_secret_name
     

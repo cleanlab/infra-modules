@@ -29,3 +29,9 @@ variable "openai_api_key_secret_name" {
   description = "Name of the secret in AWS secrets manager to read OpenAI API key from"
   type = string
 }
+
+variable "enable_external_access" {
+  description = "Whether to enable a public IP for the TLM app or not"
+  type = bool
+  default = false
+}
