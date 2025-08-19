@@ -38,7 +38,7 @@ module "cluster_addons" {
 
 module "app" {
     source = "./app"
-    app_version = "0.1.52"
+    app_version = var.chart_version
     app_image_tag = var.app_image_tag
     enable_external_access = var.enable_external_access
     aws_region = var.aws_region
