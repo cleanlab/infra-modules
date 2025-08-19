@@ -18,7 +18,6 @@ variable "namespace" {
 variable "app_version" {
     type = string
     description = "The version of the TLM to deploy"
-    default = "0.1.52"
 }
 
 variable "app_image_tag" {

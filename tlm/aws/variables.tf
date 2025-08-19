@@ -35,3 +35,8 @@ variable "enable_external_access" {
   type = bool
   default = false
 }
+
+variable "chart_version" {
+  description = "Version of the TLM app Helm chart to deploy"
+  type = string
+}
