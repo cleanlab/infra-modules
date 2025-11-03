@@ -8,7 +8,8 @@ resource "azurerm_kubernetes_cluster" "this" {
     name       = "default"
     temporary_name_for_rotation = "temp"
     node_count = 2
-    vm_size    = "Standard_D2as_v4"
+    # vm_size    = "Standard_D2as_v4"
+    vm_size = "Standard_D2ps_v6"
   }
 
   identity {
